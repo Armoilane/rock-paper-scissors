@@ -19,14 +19,18 @@
       return computerSelection ;
       }
 */    
+      function playRound (computerSelection, playerSelection){
+        alert(computerSelection);
+        alert(playerSelection);
+      }
 
-      let playerSelection = 1
-      let computerSelection = computerPlay();
+      const playerSelection = 1
+      const computerSelection = computerPlay()
 
-      function playRound (playerSelection, computerSelection) {
+      
+
+      /*function playRound (playerSelection, computerSelection) {
         
-        computerPlay();
-
         if ( computerSelection == 0 && playerSelection == 1 ) {
           return 'You win!' ;
         } else if ( computerSelection == 1 && playerSelection == 2 ) {
@@ -43,9 +47,7 @@
           return 'Tie!' ;
         }
 
-      
-
-      }
+      } */
       
         function computerPlay() {
           a = Math.floor(Math.random() * 3 );
