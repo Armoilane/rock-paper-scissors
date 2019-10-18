@@ -4,21 +4,35 @@
 
   <body>
     <script>
-      
+      var playerScore = 0
+      var computerScore = 0
+
       function playRound (computerSelection, playerSelection){
         
         if ( computerSelection == 0 && playerSelection == 1 ) {
+          ++playerScore ;
           return 'You win!' ;
+           
         } else if ( computerSelection == 1 && playerSelection == 2 ) {
-          return 'You win!' ;
+          ++playerScore ;
+          return 'You win!' ; 
+
         } else if ( computerSelection == 2 && playerSelection == 0 ) {
-          return 'You win!' ;
+          ++playerScore ;
+          return 'You win!' ; 
+          
         } else if ( computerSelection == 0 && playerSelection == 2 ) {
-          return 'You lose.' ;
-        } else if ( computerSelection == 1 && playerSelection == 0 ) {
+          ++computerScore ;
           return 'You lose.' ; 
+           
+        } else if ( computerSelection == 1 && playerSelection == 0 ) {
+          ++computerScore ;
+          return 'You lose.' ; 
+          
         } else if ( computerSelection == 2 && playerSelection == 1 ) {
-          return 'You lose.' ;
+          ++computerScore ;
+          return 'You lose.' ; 
+          
         } else { 
           return 'Tie!' ;
         }
