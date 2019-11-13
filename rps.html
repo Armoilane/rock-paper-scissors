@@ -4,60 +4,63 @@
 
   <body>
     <script>
-      var playerScore = 0
-      var computerScore = 0
 
-      function playRound (computerSelection, playerSelection){
-        
-        if ( computerSelection == 0 && playerSelection == 1 ) {
-          ++playerScore ;
-          return 'You win!' ;
-           
-        } else if ( computerSelection == 1 && playerSelection == 2 ) {
-          ++playerScore ;
-          return 'You win!' ; 
+        const computerSelection = computerPlay()
+        const playerSelection = playerPlay()
 
-        } else if ( computerSelection == 2 && playerSelection == 0 ) {
-          ++playerScore ;
-          return 'You win!' ; 
+        var playerScore = 0
+        var computerScore = 0
+
+        function oneRound (computerSelection, playerSelection) {
+          //var playerScore = 0
+          //var computerScore = 0
           
-        } else if ( computerSelection == 0 && playerSelection == 2 ) {
-          ++computerScore ;
-          return 'You lose.' ; 
-           
-        } else if ( computerSelection == 1 && playerSelection == 0 ) {
-          ++computerScore ;
-          return 'You lose.' ; 
+          if ( computerSelection == 0 && playerSelection == 1 ) {
+            ++playerScore ;
+            return 'You win!', playerScore, computerScore ;
+            
+          } else if ( computerSelection == 1 && playerSelection == 2 ) {
+            ++playerScore ;
+            return 'You win!', playerScore, computerScore ; 
+
+          } else if ( computerSelection == 2 && playerSelection == 0 ) {
+            ++playerScore ;
+            return 'You win!', playerScore, computerScore ; 
+            
+          } else if ( computerSelection == 0 && playerSelection == 2 ) {
+            ++computerScore ;
+            return 'You lose.', playerScore, computerScore ; 
+            
+          } else if ( computerSelection == 1 && playerSelection == 0 ) {
+            ++computerScore ;
+            return 'You lose.', playerScore, computerScore ; 
+            
+          } else if ( computerSelection == 2 && playerSelection == 1 ) {
+            ++computerScore ;
+            return 'You lose.', playerScore, computerScore ; 
+            
+          } else { 
+            return 'Tie!' ;
+          }
           
-        } else if ( computerSelection == 2 && playerSelection == 1 ) {
-          ++computerScore ;
-          return 'You lose.' ; 
-          
-        } else { 
-          return 'Tie!' ;
         }
+
+        function computerPlay() {
         
-      }
+        a = Math.floor(Math.random() * 3 );
 
-      const playerSelection = playerPlay()
-      const computerSelection = computerPlay()
-
-      function computerPlay() {
-      
-      a = Math.floor(Math.random() * 3 );
-
-        switch ( a ) {
-          case 0:
-            return 0;
-            break;
-          case 1:
-            return 1;
-            break;
-          case 2:
-            return 2;
-            break;
+          switch ( a ) {
+            case 0:
+              return 0;
+              break;
+            case 1:
+              return 1;
+              break;
+            case 2:
+              return 2;
+              break;
+          }
         }
-      }
 
 
         function playerPlay() {
@@ -77,6 +80,7 @@
 
         }
       
+    
     
     </script>
   </body>
