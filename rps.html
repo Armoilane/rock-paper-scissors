@@ -5,59 +5,41 @@
   <body>
     <script>
 
-/*      function playGame ( playRound, winner ) {
-
-        let playerScore = 0
-        let computerScore = 0
-
-        while (playerScore < 4 ) {
-          playRound(computerSelection,playerSelection)
-
-        }
-
-      } */
-        
-        
-
-        function playGame ( ) {
-          
-          let winner = 'foo'
-          let playerScore = 0
-          let computerScore = 0
-
-          for ( var i = 0 ; i < 5 , i++ ; ) {
-            playRound ( computerSelection() , playerSelection() );
-            console.log(winner);
-          }
-
-          
-        
-
-        
+      let playerScore = 0
+      let computerScore = 0
+      let winner = ''
+      
 
         function playRound ( computerSelection, playerSelection) {
 
-          let winner = 'tie'
+          
 
           if ( computerSelection == 0 && playerSelection == 1 ) {
             winner = 'player';
+            playerScore++;
             return winner;
           } else if ( computerSelection == 1 && playerSelection == 2 ) {
             winner = 'player';
+            playerScore++;
             return winner;
           } else if ( computerSelection == 2 && playerSelection == 0 ) {
             winner = 'player';
+            playerScore++;
             return winner;
           } else if ( computerSelection == 0 && playerSelection == 2 ) {
             winner = 'computer';
+            computerScore++;
             return winner;
           } else if ( computerSelection == 1 && playerSelection == 0 ) {
             winner = 'computer';
+            computerScore++;
             return winner;
           } else if ( computerSelection == 2 && playerSelection == 1 ) {
             winner = 'computer';
+            computerScore++;
             return winner;
           } else {
+            winner = 'tie'
             return winner;
           }
 
@@ -97,8 +79,29 @@
           }
 
         }
+        
+        function game () {
+
+          
+          while ( playerScore <= 2 && computerScore <= 2 ) {
+            
+            
+            
+            playRound(computerSelection(), playerSelection());
+            
+
+            console.log( `Round winner is ${winner}` );
+            console.log( `The score is Player ${playerScore} to ${computerScore}.` )
+
+          }
+
+          if (playerScore > computerScore) {
+            console.log(`Player won with a score of ${playerScore}!`)
+          } else {
+            console.log(`Computer won with a score of ${computerScore}`)
+          }
         }
-        playGame();
+        
             
     
     </script>
