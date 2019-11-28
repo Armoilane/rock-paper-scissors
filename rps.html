@@ -89,9 +89,16 @@
             
             playRound(computerSelection(), playerSelection());
             
+            if ( winner === 'tie' ) {
+              console.log( `Round tied!`);
+            } else {
+              console.log( `Round winner is ${winner}!` );
+              console.log( `The score is Player ${playerScore} to ${computerScore}.` );
+            }
 
-            console.log( `Round winner is ${winner}` );
-            console.log( `The score is Player ${playerScore} to ${computerScore}.` )
+            
+
+            
 
           }
 
