@@ -5,35 +5,60 @@
   <body>
     <script>
 
-      function playGame ( playRound ) {
+/*      function playGame ( playRound, winner ) {
 
         let playerScore = 0
         let computerScore = 0
 
-      } 
+        while (playerScore < 4 ) {
+          playRound(computerSelection,playerSelection)
+
+        }
+
+      } */
+        
+        
+
+        function playGame ( ) {
+          
+          let winner = 'foo'
+          let playerScore = 0
+          let computerScore = 0
+
+          for ( var i = 0 ; i < 5 , i++ ; ) {
+            playRound ( computerSelection() , playerSelection() );
+            console.log(winner);
+          }
+
+          
+        
+
+        
 
         function playRound ( computerSelection, playerSelection) {
 
+          let winner = 'tie'
+
           if ( computerSelection == 0 && playerSelection == 1 ) {
-            ++playerScore;
-            return 'You win.';
+            winner = 'player';
+            return winner;
           } else if ( computerSelection == 1 && playerSelection == 2 ) {
-            ++playerScore;
-            return 'You win.';
+            winner = 'player';
+            return winner;
           } else if ( computerSelection == 2 && playerSelection == 0 ) {
-            ++playerScore;
-            return 'You win.';
+            winner = 'player';
+            return winner;
           } else if ( computerSelection == 0 && playerSelection == 2 ) {
-            ++computerScore;
-            return 'You lose.';
+            winner = 'computer';
+            return winner;
           } else if ( computerSelection == 1 && playerSelection == 0 ) {
-            ++computerScore;
-            return 'You lose.';            
+            winner = 'computer';
+            return winner;
           } else if ( computerSelection == 2 && playerSelection == 1 ) {
-            ++computerScore;
-            return 'You lose.';
+            winner = 'computer';
+            return winner;
           } else {
-            return 'Tie!';
+            return winner;
           }
 
         }
@@ -72,6 +97,8 @@
           }
 
         }
+        }
+        playGame();
             
     
     </script>
