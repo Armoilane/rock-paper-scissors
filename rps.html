@@ -4,113 +4,121 @@
 
   <body>
     <script>
-
+  
       let playerScore = 0
       let computerScore = 0
       let winner = ''
       
+      function playRound(computerSelection, playerSelection) {
+      
+        if (computerSelection == 0 && playerSelection == 1) {
+          winner = 'player';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 1 && playerSelection == 2) {
+          winner = 'player';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 2 && playerSelection == 0) {
+          winner = 'player';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 0 && playerSelection == 2) {
+          winner = 'computer';
+          computerScore++;
+          return winner;
+      
+        } else if (computerSelection == 1 && playerSelection == 0) {
+          winner = 'computer';
+          computerScore++;
+          return winner;
+      
+        } else if (computerSelection == 2 && playerSelection == 1) {
+          winner = 'computer';
+          computerScore++;
+          return winner;
+      
+        } else {
+          winner = 'tie'
+          return winner;
+        }
+      
+      }
+      
+      
+      function computerSelection() {
+      
+        a = Math.floor(Math.random() * 3);
+      
+        switch (a) {
+          case 0:
+            return 0;
+            break;
+          case 1:
+            return 1;
+            break;
+          case 2:
+            return 2;
+            break;
+        }
+      
+      }
+      
+      
+      function playerSelection() {
+        
+        let ps = prompt("Rock, paper or scissors?");
+        
+        switch (ps.toLowerCase()) {
+          case "rock":
+            return 0;
+            break;
+          case "paper":
+            return 1;
+            break;
+          case "scissors":
+            return 2;
+            break;
+        }
+      
+      }
+      
 
-        function playRound ( computerSelection, playerSelection) {
-
-          
-
-          if ( computerSelection == 0 && playerSelection == 1 ) {
-            winner = 'player';
-            playerScore++;
-            return winner;
-          } else if ( computerSelection == 1 && playerSelection == 2 ) {
-            winner = 'player';
-            playerScore++;
-            return winner;
-          } else if ( computerSelection == 2 && playerSelection == 0 ) {
-            winner = 'player';
-            playerScore++;
-            return winner;
-          } else if ( computerSelection == 0 && playerSelection == 2 ) {
-            winner = 'computer';
-            computerScore++;
-            return winner;
-          } else if ( computerSelection == 1 && playerSelection == 0 ) {
-            winner = 'computer';
-            computerScore++;
-            return winner;
-          } else if ( computerSelection == 2 && playerSelection == 1 ) {
-            winner = 'computer';
-            computerScore++;
-            return winner;
+      function game() {
+        
+        while (playerScore <= 2 && computerScore <= 2) {
+        
+          playRound(computerSelection(), playerSelection());
+      
+          if (winner === 'tie') {
+        
+            console.log(`Round tied! Shuffle again you must!`);
+        
           } else {
-            winner = 'tie'
-            return winner;
-          }
-
-        }
-
-        function computerSelection () {
         
-          a = Math.floor(Math.random() * 3 );
-
-          switch ( a ) {
-            case 0:
-              return 0;
-              break;
-            case 1:
-              return 1;
-              break;
-            case 2:
-              return 2;
-              break;
+            console.log(`Round winner is ${winner}!`);
+             console.log(`The score is Player ${playerScore} to ${computerScore}.`);
+        
           }
-        }
-
-
-        function playerSelection () {
-          let ps = prompt ( "Rock, paper or scissors?", );
-
-          switch ( ps.toLowerCase() ) {
-            case "rock":
-              return 0;
-              break;
-            case "paper":
-              return 1;
-              break;
-            case "scissors":
-              return 2;
-              break;
-          }
-
+        
         }
         
-        function game () {
-
-          
-          while ( playerScore <= 2 && computerScore <= 2 ) {
-            
-            
-            
-            playRound(computerSelection(), playerSelection());
-            
-            if ( winner === 'tie' ) {
-              console.log( `Round tied!`);
-            } else {
-              console.log( `Round winner is ${winner}!` );
-              console.log( `The score is Player ${playerScore} to ${computerScore}.` );
-            }
-
-            
-
-            
-
-          }
-
-          if (playerScore > computerScore) {
-            console.log(`Player won with a score of ${playerScore}!`)
-          } else {
-            console.log(`Computer won with a score of ${computerScore}`)
-          }
-        }
+        if (playerScore > computerScore) {
         
-            
-    
+          console.log(`Player won with a score of ${playerScore}!`)
+        
+        } else {
+        
+          console.log(`Computer won with a score of ${computerScore}`)
+        
+        }
+       
+      }
+
+
     </script>
   </body>
 </html>
