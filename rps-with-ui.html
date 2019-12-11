@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <title>Rock Paper Scissors</title>
+
+  <body>
+
+    <div id="container">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
+
+
+    <script>
+
+      let playerScore = 0;
+      let computerScore = 0;
+      let winner = '';
+
+
+      let buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+
+        button.addEventListener('click', (e) => {
+
+          if (button.id == "rock") {
+            let playerSelection = 0;
+
+            console.log(playerSelection);
+
+            playRound(computerSelection(),playerSelection);
+
+            console.log(winner);
+
+          } else if (button.id == "paper") {
+            let playerSelection = 1;
+
+            console.log(playerSelection);
+
+            playRound(computerSelection(),playerSelection);
+
+            console.log(winner);
+
+          } else if ( button.id == "scissors" ) {
+            let playerSelection = 2;
+
+            console.log(playerSelection);
+
+            playRound(computerSelection(),playerSelection);
+
+            console.log(winner);
+
+          }
+
+        });
+
+      });
+  
+
+      function playRound(computerSelection, playerSelection) {
+      
+        if (computerSelection == 0 && playerSelection == 1) {
+          winner = 'player';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 1 && playerSelection == 2) {
+          winner = 'player';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 2 && playerSelection == 0) {
+          winner = 'player';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 0 && playerSelection == 2) {
+          winner = 'computer';
+          computerScore++;
+          return winner;
+      
+        } else if (computerSelection == 1 && playerSelection == 0) {
+          winner = 'computer';
+          computerScore++;
+          return winner;
+      
+        } else if (computerSelection == 2 && playerSelection == 1) {
+          winner = 'computer';
+          computerScore++;
+          return winner;
+      
+        } else {
+          winner = 'tie'
+          return winner;
+        }
+      
+      }
+      
+      
+      function computerSelection() {
+      
+        a = Math.floor(Math.random() * 3);
+      
+        switch (a) {
+          case 0:
+            return 0;
+            break;
+          case 1:
+            return 1;
+            break;
+          case 2:
+            return 2;
+            break;
+        }
+      
+      }
+
+
+      function game() {
+        
+        while (playerScore <= 5 && computerScore <= 5) {
+        
+          playRound(computerSelection(), playerSelection());
+      
+          if (winner === 'tie') {
+        
+            console.log(`Round tied! Shuffle again you must!`);
+        
+          } else {
+        
+            console.log(`Round winner is ${winner}!`);
+            console.log(`The score is Player ${playerScore} to ${computerScore}.`);
+        
+          }
+        
+        }
+        
+        if (playerScore > computerScore) {
+        
+          console.log(`Player won with a score of ${playerScore}!`)
+        
+        } else {
+        
+          console.log(`Computer won with a score of ${computerScore}`)
+        
+        }
+       
+      }
+
+
+    </script>
+  </body>
+</html>
