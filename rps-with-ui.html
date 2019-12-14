@@ -10,14 +10,18 @@
       <button id="scissors">Scissors</button>
     </div>
 
+    <div id="resultsContainer"></div>
+    <div id="scoreContainer"></div>
+
 
     <script>
+
 
       let playerScore = 0;
       let computerScore = 0;
       let winner = '';
 
-
+      let container = document.querySelector('#container');
       let buttons = document.querySelectorAll('button');
 
       buttons.forEach((button) => {
@@ -25,38 +29,95 @@
         button.addEventListener('click', (e) => {
 
           if (button.id == "rock") {
+
             let playerSelection = 0;
-
-            console.log(playerSelection);
-
             playRound(computerSelection(),playerSelection);
-
-            console.log(winner);
+            displayRoundWinner(winner);
+            displayScore(playerScore,computerScore);
 
           } else if (button.id == "paper") {
+
             let playerSelection = 1;
-
-            console.log(playerSelection);
-
             playRound(computerSelection(),playerSelection);
+            displayRoundWinner(winner);
+            displayScore(playerScore,computerScore);
 
-            console.log(winner);
+          } else if (button.id == "scissors") {
 
-          } else if ( button.id == "scissors" ) {
             let playerSelection = 2;
-
-            console.log(playerSelection);
-
             playRound(computerSelection(),playerSelection);
-
-            console.log(winner);
+            displayRoundWinner(winner);
+            displayScore(playerScore,computerScore);
 
           }
 
         });
 
       });
-  
+
+
+      function displayScore ( playerScore, computerScore ) {
+
+        let scoreContainer = document.getElementById("scoreContainer");
+        let scoreParagraph = document.createElement('p');
+
+        scoreParagraph.classList.add('p');
+        scoreParagraph.innerHTML = `Score is ${playerScore} for player and
+                                    ${computerScore} for computer.`;
+        scoreContainer.appendChild(scoreParagraph);
+        // container.replaceChild(scoreDiv, scoreDiv);
+
+      }
+
+      function checkIfElementExists ( elementID ) {
+
+        let element = document.getElementById(elementID);
+
+        if ( typeof(element) !='undefined' && element != null ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+
+      function displayRoundWinner ( winner ) {
+
+        let resultsContainer = document.getElementById("resultsContainer");
+        let resultsParagraph = document.createElement('p');
+        resultsParagraph.id = "resultsParagraph"; 
+        resultsContainer.classList.add('p');
+
+        let tieText = `Round tied! Replay!`;
+        let winnerText = `The winner is ${winner}.`;
+
+        let resultsParagraphExists = checkIfElementExists( "resultsParagraph" )
+
+        if ( resultsParagraphExists === true ) {
+          
+        }
+
+        
+
+        if ( winner == 'tie' ) {
+          
+          document.getElementById('p').innerHTML = "Tie.";
+          resultsContainer.appendChild(resultsParagraph);
+          
+//          container.replaceChild(resultsDiv, resultsDiv);
+
+        } else {
+
+          resultsParagraph.textContent = `The winner is ${winner}.`;
+          resultsContainer.appendChild(resultsParagraph);
+//          container.replaceChild(resultsDiv, resultsDiv);
+
+        }
+
+        
+
+      }
+
 
       function playRound(computerSelection, playerSelection) {
       
@@ -115,6 +176,9 @@
         }
       
       }
+
+
+
 
 
       function game() {
