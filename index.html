@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <title>Rock Paper Scissors</title>
+
+  <body>
+
+    <div id='container'>
+      <button id='rock'>Rock</button>
+      <button id='paper'>Paper</button>
+      <button id='scissors'>Scissors</button>
+    </div>
+
+    <div id='resultsContainer'></div>
+    <div id='scoreContainer'></div>
+
+
+    <script>
+
+      let playerScore = 0;
+      let computerScore = 0;
+      let winner = '';
+
+      let container = document.querySelector('#container');
+      let buttons = document.querySelectorAll('button');
+
+      buttons.forEach((button) => {
+
+        button.addEventListener('click', (e) => {
+
+          if (button.id == 'rock') {
+
+            hideResetParagraph();
+            let playerSelection = 'rock';
+            playRound(computerSelection(),playerSelection);
+            displayRoundWinner(winner, playerSelection);
+            displayScore(playerScore,computerScore);
+            gameToFive(playerScore, computerScore);
+
+          } else if (button.id == 'paper') {
+
+            hideResetParagraph();
+            let playerSelection = 'paper';
+            playRound(computerSelection(),playerSelection);
+            displayRoundWinner(winner,playerSelection);
+            displayScore(playerScore,computerScore);
+            gameToFive(playerScore, computerScore);
+
+          } else if (button.id == 'scissors') {
+
+            hideResetParagraph();
+            let playerSelection = 'scissors';
+            playRound(computerSelection(),playerSelection);
+            displayRoundWinner(winner, playerSelection);
+            displayScore(playerScore,computerScore);
+            gameToFive(playerScore, computerScore);
+
+          }
+
+        });
+
+      });
+
+
+      function hideResetParagraph () {
+        
+        let resetParagraph = document.getElementById('resetParagraph');
+        let resetParagraphExists = checkIfElementExists('resetParagraph');
+        let scoreContainer = document.getElementById('scoreContainer');
+
+        if ( resetParagraphExists == true ) {
+          scoreContainer.removeChild(resetParagraph);
+        }
+
+        let endResultParagraph = document.getElementById('endResultParagraph');
+        let endResultParagraphExists = checkIfElementExists('endResultParagraph');
+
+        if ( endResultParagraphExists == true ) {
+          scoreContainer.removeChild(endResultParagraph);
+        }
+
+      }
+
+
+      function gameToFive (playerScore, computerScore) {
+
+        let scoreContainer = document.getElementById('scoreContainer');
+        let endResultParagraph = document.createElement('p');
+        endResultParagraph.classList.add('p');
+        endResultParagraph.id = 'endResultParagraph';
+        let endResultParagraphExists = checkIfElementExists('endResultParagraph');
+
+        if (endResultParagraphExists != true) {
+          scoreContainer.appendChild(endResultParagraph);
+        }
+
+        if (playerScore == 5) {
+          let endResultText = `Game over! Player wins with ${playerScore} rounds.`;
+          let paragraph = document.getElementById('endResultParagraph');
+          paragraph.innerHTML = endResultText;
+          resetGame();
+        } 
+        
+        if (computerScore == 5) {
+          let endResultText = `Game over! Computer wins with ${computerScore} rounds.`;
+          let paragraph = document.getElementById('endResultParagraph');
+          paragraph.innerHTML = endResultText;
+          resetGame();
+        } 
+
+      }
+
+
+      function resetGame () {
+        
+        playerScore = 0;
+        computerScore = 0;
+
+        let scoreContainer = document.getElementById('scoreContainer');
+        let resetParagraph = document.createElement('p');
+        resetParagraph.classList.add('p');
+        resetParagraph.id = 'resetParagraph';
+        let resetParagraphExists = checkIfElementExists('resetParagraph');
+        let resetText = `Game is now reset to ${playerScore} - ${computerScore}. `;
+        let againText = 'Play again if you will by just choosing one above!';
+
+        if ( resetParagraphExists === false ) {
+          scoreContainer.appendChild(resetParagraph);
+        }
+
+        let paragraph = document.getElementById('resetParagraph');
+        
+        paragraph.innerHTML = resetText + againText;
+
+      }
+
+
+      function displayScore ( playerScore, computerScore ) {
+
+        let scoreContainer = document.getElementById('scoreContainer');
+        let scoreParagraph = document.createElement('p');
+        scoreParagraph.classList.add('p');
+        scoreParagraph.id = 'scoreParagraph';
+        let scoreParagraphExists = checkIfElementExists('scoreParagraph');
+        let scoreText = `Score is ${playerScore} for player and
+                          ${computerScore} for computer.`;
+        
+        if ( scoreParagraphExists === false ) {
+          scoreContainer.appendChild(scoreParagraph);
+        }
+
+        let paragraph = document.getElementById('scoreParagraph');
+        paragraph.innerHTML = scoreText;
+
+      }
+
+
+      function checkIfElementExists ( elementID ) {
+
+        let element = document.getElementById(elementID);
+
+        if ( typeof(element) != 'undefined' && element != null ) {
+          return true;
+        } else {
+          return false;
+        }
+      
+      }
+
+
+      function displayRoundWinner ( winner, playerSelection ) {
+
+        let resultsContainer = document.getElementById('resultsContainer');
+        let resultsParagraph = document.createElement('p');
+        resultsContainer.classList.add('p');
+        resultsParagraph.id = 'resultsParagraph'; 
+        let tieText = `Round tied! Both chose ${playerSelection}. Replay!`;
+        let winnerText = `The winner is ${winner}.`;
+
+        let resultsParagraphExists = checkIfElementExists('resultsParagraph');
+
+        if ( resultsParagraphExists != true ) {
+          resultsContainer.appendChild(resultsParagraph);
+        } 
+
+        if ( winner == 'tie' ) {
+          let paragraph = document.getElementById('resultsParagraph');
+          paragraph.innerHTML = tieText;
+        } else {
+          let paragraph = document.getElementById('resultsParagraph');
+          paragraph.innerHTML = winnerText;
+        }
+
+      }
+
+
+      function playRound(computerSelection, playerSelection) {
+      
+        if (computerSelection == 'rock' && playerSelection == 'paper') {
+          winner = 'player. Paper beats rock';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 'paper' && playerSelection == 'scissors') {
+          winner = 'player. Scissors beat paper';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 'scissors' && playerSelection == 'rock') {
+          winner = 'player. Rock beats scissors';
+          playerScore++;
+          return winner;
+      
+        } else if (computerSelection == 'rock' && playerSelection == 'scissors') {
+          winner = 'computer. Rock beats scissors';
+          computerScore++;
+          return winner;
+      
+        } else if (computerSelection == 'paper' && playerSelection == 'rock') {
+          winner = 'computer. Paper beats rock';
+          computerScore++;
+          return winner;
+      
+        } else if (computerSelection == 'scissors' && playerSelection == 'paper') {
+          winner = 'computer. Scissors beat paper';
+          computerScore++;
+          return winner;
+      
+        } else {
+          winner = 'tie';
+          return winner;
+        }
+      
+      }
+      
+      
+      function computerSelection() {
+      
+        a = Math.floor(Math.random() * 3);
+      
+        switch (a) {
+          case 0:
+            return 'rock';
+            break;
+          case 1:
+            return 'paper';
+            break;
+          case 2:
+            return 'scissors';
+            break;
+        }
+      
+      }
+
+
+    </script>
+  </body>
+</html>
