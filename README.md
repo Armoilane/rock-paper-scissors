@@ -1,2 +1,2 @@
 # rock-paper-scissors
-JS RPS game on console as a part of The Odin Project
+JS RPS game on with some DOM manipulation exercises as a part of The Odin Project.
